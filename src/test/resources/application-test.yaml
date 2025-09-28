@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/emag_test
+      auto-index-creation: true
+  profiles:
+    active: test
+
+server:
+  port: 0  # Random port for tests
+
+logging:
+  level:
+    com.example.emag: DEBUG
+    org.springframework.data.mongodb: DEBUG

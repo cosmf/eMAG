@@ -1,0 +1,20 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/retaildb
+      auto-index-creation: true   # creates @Indexed constraints at startup
+server:
+  port: 8080
+
+
+management:
+  endpoints.web.exposure.include: health,info
+  endpoint.health.show-details: when_authorized
+
+
+# springdoc swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger

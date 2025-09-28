@@ -1,0 +1,72 @@
+# eMAG Bank API - POST Test Commands
+# Run these commands one by one to test POST operations
+
+# 1. Create Maria Garcia (will have 2 products)
+curl -X POST http://localhost:8080/api/clients \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cnp": "1111111111111",
+    "firstName": "Maria",
+    "lastName": "Garcia",
+    "email": "maria.garcia@example.com"
+  }'
+
+# 2. Create John Smith (will have 3 products)
+curl -X POST http://localhost:8080/api/clients \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cnp": "2222222222222",
+    "firstName": "John",
+    "lastName": "Smith",
+    "email": "john.smith@example.com"
+  }'
+
+# 3. Create Sarah Johnson (will have 4 products)
+curl -X POST http://localhost:8080/api/clients \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cnp": "3333333333333",
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "email": "sarah.johnson@example.com"
+  }'
+
+# 4. Create Alex Brown (will have 0 products - empty case)
+curl -X POST http://localhost:8080/api/clients \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cnp": "4444444444444",
+    "firstName": "Alex",
+    "lastName": "Brown",
+    "email": "alex.brown@example.com"
+  }'
+
+# 5. Get all clients to see the IDs
+curl -s http://localhost:8080/api/clients
+
+# 6. Get all products to see the IDs
+curl -s http://localhost:8080/api/products
+
+# 7. Attach products to Maria Garcia (2 products)
+# Replace CLIENT_ID_1 with Maria's actual ID from step 5
+# Replace PRODUCT_ID_1 and PRODUCT_ID_2 with actual product IDs from step 6
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_1/products/PRODUCT_ID_1
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_1/products/PRODUCT_ID_2
+
+# 8. Attach products to John Smith (3 products)
+# Replace CLIENT_ID_2 with John's actual ID
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_2/products/PRODUCT_ID_1
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_2/products/PRODUCT_ID_2
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_2/products/PRODUCT_ID_3
+
+# 9. Attach products to Sarah Johnson (4 products)
+# Replace CLIENT_ID_3 with Sarah's actual ID
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_3/products/PRODUCT_ID_1
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_3/products/PRODUCT_ID_2
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_3/products/PRODUCT_ID_3
+curl -X POST http://localhost:8080/api/clients/CLIENT_ID_3/products/PRODUCT_ID_4
+
+# 10. Alex Brown gets 0 products (empty case)
+
+# 11. Final verification - Get all clients to see the results
+curl -s http://localhost:8080/api/clients
